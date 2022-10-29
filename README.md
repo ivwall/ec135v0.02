@@ -220,13 +220,31 @@ MariaDB [silkpurse]> load data infile '/tmp/load-one.txt' into table wallet fiel
 </pre>
 
 # new architecture
-## step 1
+### step 1
 <pre>
 read a bitcoin nodes *.dat files
 generate files to load into a maria db
 </pre>
-## step 2
+### step 2
 <pre>
 copy files over to mariadb
 load the files
+</pre>
+### step 3 
+## setup steps
+### gradle init - see above
+### configure build.gradle to create fatJars
+<pre>
+add artifacts -- bottom of file
+add task fatJar -- next from bottom
+gradle build
+java -jar ./app/build/libs/app-all.jar
+</pre>
+### test, run
+<pre>
+test using .dat files in ../../1014-bdfx/blocks/
+run on bnd01 and generate db load files
+    scp ./app/build/libs/app-all.jar ivwall@10.10.89.92:/home/ivwall
+    /dev/sda2       916G  479G  390G  56% /
+copy files to php64460gln321
 </pre>

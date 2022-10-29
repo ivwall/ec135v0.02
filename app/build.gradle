@@ -22,9 +22,36 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'ch.qos.logback:logback-classic:1.1.2'
+    implementation 'org.bitcoinj:bitcoinj-core:0.16.1'
+    implementation 'org.bitcoinj:bitcoinj-tools:0.14.7'
 }
 
 application {
     // Define the main class for the application.
     mainClass = 'io.crtp.ec135.App'
+}
+
+
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    classifier = 'all'
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes 'Main-Class': 'io.crtp.ec135.App'
+    }
+    //http://man.hubwiz.com/docset/Gradle_User_Guide.docset/Contents/Resources/Documents/userguide/working_with_files.html
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
+}
+artifacts {
+    archives fatJar
 }
