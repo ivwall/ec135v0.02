@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Locale;
+import java.util.HashSet;
 
 import java.text.SimpleDateFormat;
 
@@ -50,6 +51,7 @@ public class DatReader {
     List<TransactionOutput> trxOutputs = null;
     NetworkParameters np = null;
     String PREFIX = null;
+    HashSet<String> addrSet = new HashSet();
 
     public DatReader() {
         log.debug("constructor");
@@ -58,7 +60,7 @@ public class DatReader {
     
     public void mone() {
 
-        log.debug( "mone" );
+        log.debug( "mone ec135v02" );
         log.debug( PREFIX );
 
         List<File> list = new LinkedList<File>();
@@ -66,35 +68,55 @@ public class DatReader {
         File folder = new File(PREFIX);
         File[] listOfFiles = folder.listFiles();
         
+        List<File> oneFile = new LinkedList<File>();
+
         for ( int i = 0; i < listOfFiles.length; i++ ) {
           if ( listOfFiles[i].isFile() ) {
             log.debug( "File " + listOfFiles[i].getName() );
+
             list.add( listOfFiles[i] );
-          } else if (listOfFiles[i].isDirectory()) {
+
+            oneFile.add( list.get(i) );
+
+        } else if (listOfFiles[i].isDirectory()) {
             log.debug("Directory " + listOfFiles[i].getName());
           }
         }
 
-        List<File> oneFile = new LinkedList<File>();
-        oneFile.add( list.get(0) );
+        //List<File> oneFile = new LinkedList<File>();
+        //log.debug( "file " + list.get(0) );
+        log.debug( "file " + list.get(0) );
+        log.debug( "file list size " + list.size() );
+        //oneFile.add( list.get(0) );
+        //oneFile.add( list );
         Context context = new Context( params );
         BlockFileLoader bfl = new BlockFileLoader( params, oneFile );
+
         Script script = null;
         ScriptType script3 = null;
         TransactionOutput trxOut = null;
         List<ScriptChunk> scriptChunks = null;
 
+        String btc_address = null;
+
         int blkNum = 0;
+
+        log.debug( "oneFile.size " + oneFile.size() );
+
         for ( Block block : bfl ) {
-            log.debug("");
-            log.debug("- - - - - - - - - - - - - - - - - - - - - - - - ");
-            log.debug("");
+            log.debug( "" );
+            log.debug( "- - - - - - - - - - - - - - - - - - - - - - - - ");
+            log.debug( "" + block.toString() );
+            log.debug( "" );
+            log.debug( "BLOCK_HEIGHT_GENESIS " + block.BLOCK_HEIGHT_GENESIS );
+            log.debug( "" );
+            log.debug( "" );
 
             try {
 
                 log.debug( "block number " + blkNum );
                 blkNum++;
-                log.debug( block.getHashAsString() );
+                log.debug( "block.getHashAsString " + block.getHashAsString() );
                 log.debug( "block date time "+sdf.format(block.getTime()) );
                 trxs = block.getTransactions();
                 log.debug( "num of trxs "+trxs.size() );
@@ -104,8 +126,6 @@ public class DatReader {
                     trx = trxs.get(x);
                     trxOutputs = trx.getOutputs();
 
-                    //for ( int z=0; z < trxOutputs.size(); z++ ) {
-                    //}
                     for ( int y = 0; y < trxOutputs.size(); y++ ) {
 
                         script3 = trx.getOutput( y ).getScriptPubKey().getScriptType();
@@ -116,12 +136,13 @@ public class DatReader {
                             trxOut = trxOutputs.get( z );
                             ScriptType scriptTypeEnum =  trx.getOutput( z ).getScriptPubKey().getScriptType();
 
-                            if ( scriptTypeEnum == Script.ScriptType.P2PKH ) {
+                            if ( scriptTypeEnum == Script.ScriptType.P2PKH ) {  // <-----------P2PKH
 
                                 script = trxOut.getScriptPubKey();
-                                log.debug( "found addr " + script_getToAddress( script ) );
 
-                            } else if ( scriptTypeEnum == Script.ScriptType.P2PK ) {
+                                duplicate_address_check( script_getToAddress( script ) );
+
+                            } else if ( scriptTypeEnum == Script.ScriptType.P2PK ) { // <------P2PK
 
                                 script = trxOut.getScriptPubKey();
 
@@ -136,7 +157,20 @@ public class DatReader {
                                 int rightBracket = chunkZero.indexOf("]");
                                 String pubKey = chunkZero.substring(leftBracket+1, rightBracket);
 
-                                log.debug( "found addr " + addressFromPubKey2( pubKey ) );
+                                duplicate_address_check( addressFromPubKey2( pubKey ) );
+
+
+                            } else if ( scriptTypeEnum == Script.ScriptType.P2SH ) { // <---P2SH
+
+                                log.debug("##P2PSH");
+
+                            } else if ( scriptTypeEnum == Script.ScriptType.P2WPKH ) { // <--P2WPKH
+
+                                log.debug("##P2WPKH");
+
+                            } else if ( scriptTypeEnum == Script.ScriptType.P2WSH ) { // <---P2WSH
+
+                                log.debug("##P2WSH");
 
                             } else {
 
@@ -150,6 +184,25 @@ public class DatReader {
                 log.debug( ax.toString() );
             }
         }
+    }
+
+    /****
+     * 
+     * @param btc_address
+     */
+    public void duplicate_address_check( String btc_address ) {
+
+        if ( addrSet.contains( btc_address ) ) {
+
+            log.debug( "duplicate " + btc_address );
+
+        } else {
+
+            log.debug( "addr " + btc_address );
+            addrSet.add( btc_address );
+
+        }
+
     }
 
     /******
@@ -241,5 +294,4 @@ public class DatReader {
         }
         return data;
     }
-
 }
