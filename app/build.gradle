@@ -19,12 +19,13 @@ repositories {
 dependencies {
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13.2'
-
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'ch.qos.logback:logback-classic:1.1.2'
     implementation 'org.bitcoinj:bitcoinj-core:0.16.1'
     implementation 'org.bitcoinj:bitcoinj-tools:0.14.7'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.5'
 }
 
 application {

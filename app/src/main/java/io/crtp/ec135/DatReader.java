@@ -31,8 +31,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Locale;
 import java.util.HashSet;
+import java.util.Arrays;
 
 import java.text.SimpleDateFormat;
+
+import java.io.FileFilter;
+import java.io.IOException;
+import java.util.Date;
+
+import org.apache.commons.io.comparator.NameFileComparator;
+import org.apache.commons.io.filefilter.FileFileFilter;
 
 public class DatReader {
 
@@ -53,6 +61,8 @@ public class DatReader {
     String PREFIX = null;
     HashSet<String> addrSet = new HashSet();
 
+    int address_id = 0;
+
     public DatReader() {
         log.debug("constructor");
         PREFIX = ec135props.getProp( Constants.dat_directory );
@@ -68,27 +78,27 @@ public class DatReader {
         File folder = new File(PREFIX);
         File[] listOfFiles = folder.listFiles();
         
+        Arrays.sort(listOfFiles, NameFileComparator.NAME_COMPARATOR);
+		//System.out.println("\nNames, case sensitive ascending order (NAME_COMPARATOR)");
+		//displayFiles(listOfFiles);
+
         List<File> oneFile = new LinkedList<File>();
 
         for ( int i = 0; i < listOfFiles.length; i++ ) {
-          if ( listOfFiles[i].isFile() ) {
-            log.debug( "File " + listOfFiles[i].getName() );
-
-            list.add( listOfFiles[i] );
-
-            oneFile.add( list.get(i) );
-
-        } else if (listOfFiles[i].isDirectory()) {
-            log.debug("Directory " + listOfFiles[i].getName());
-          }
+            if ( listOfFiles[i].isFile() ) {
+                log.debug( "File " + listOfFiles[i].getName() );
+                list.add( listOfFiles[i] );
+                oneFile.add( list.get(i) );
+            } else if (listOfFiles[i].isDirectory()) {
+                log.debug("Directory " + listOfFiles[i].getName());
+            }
         }
 
         //List<File> oneFile = new LinkedList<File>();
         //log.debug( "file " + list.get(0) );
-        log.debug( "file " + list.get(0) );
-        log.debug( "file list size " + list.size() );
-        //oneFile.add( list.get(0) );
-        //oneFile.add( list );
+        //log.debug( "file " + list.get(0) );
+        //log.debug( "file list size " + list.size() );
+
         Context context = new Context( params );
         BlockFileLoader bfl = new BlockFileLoader( params, oneFile );
 
@@ -98,28 +108,22 @@ public class DatReader {
         List<ScriptChunk> scriptChunks = null;
 
         String btc_address = null;
-
         int blkNum = 0;
 
-        log.debug( "oneFile.size " + oneFile.size() );
-
         for ( Block block : bfl ) {
-            log.debug( "" );
-            log.debug( "- - - - - - - - - - - - - - - - - - - - - - - - ");
-            log.debug( "" + block.toString() );
-            log.debug( "" );
-            log.debug( "BLOCK_HEIGHT_GENESIS " + block.BLOCK_HEIGHT_GENESIS );
-            log.debug( "" );
-            log.debug( "" );
 
             try {
 
-                log.debug( "block number " + blkNum );
                 blkNum++;
-                log.debug( "block.getHashAsString " + block.getHashAsString() );
-                log.debug( "block date time "+sdf.format(block.getTime()) );
                 trxs = block.getTransactions();
-                log.debug( "num of trxs "+trxs.size() );
+
+                log.debug( "block " + blkNum + 
+                           ": time " + sdf.format(block.getTime()) +
+                           ": trxs " + trxs.size() );
+
+                //log.debug( "block.getHashAsString " + block.getHashAsString() );
+                //log.debug( "block date time "+sdf.format(block.getTime()) );
+                //log.debug( "num of trxs "+trxs.size() );
 
                 for( int x=0; x<trxs.size() ; x++ ) {
 
@@ -159,7 +163,6 @@ public class DatReader {
 
                                 duplicate_address_check( addressFromPubKey2( pubKey ) );
 
-
                             } else if ( scriptTypeEnum == Script.ScriptType.P2SH ) { // <---P2SH
 
                                 log.debug("##P2PSH");
@@ -191,18 +194,15 @@ public class DatReader {
      * @param btc_address
      */
     public void duplicate_address_check( String btc_address ) {
-
         if ( addrSet.contains( btc_address ) ) {
-
-            log.debug( "duplicate " + btc_address );
-
+            //log.debug( "duplicate " + btc_address );
         } else {
-
-            log.debug( "addr " + btc_address );
+            //log.debug( "addr " + btc_address );
+            //log.debug( "" + address_id + "," + "\"" + btc_address + "\"" );
+            System.out.println( "" + address_id + "," + "\"" + btc_address + "\"" );
             addrSet.add( btc_address );
-
+            address_id++;
         }
-
     }
 
     /******
@@ -294,4 +294,11 @@ public class DatReader {
         }
         return data;
     }
+
+	public static void displayFiles(File[] files) {
+		for (File file : files) {
+			System.out.printf("File: %-20s Last Modified:" + new Date(file.lastModified()) + "\n", file.getName());
+		}
+	}
+
 }

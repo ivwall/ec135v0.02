@@ -248,3 +248,41 @@ run on bnd01 and generate db load files
     /dev/sda2       916G  479G  390G  56% /
 copy files to php64460gln321
 </pre>
+
+
+## Nov 3, 2022 - towards a new arch
+<pre>
+last checkin posted the github starts the new architecutre
+Run 1, two *.dat files
+reading the btc *.dat pulls data out much faster ()
+     800000 unique addresses found in 2 mins
+Run 2, three *.dat files
+    1347837 unique addreses found in 8 mins, addr.out size 135472660
+    file order
+        File blk00001.dat
+        File blk00002.dat
+        File blk00000.dat
+Run 3, four *.dat files
+    1870256 uads found in 10 mins, addr.out size 174672228
+        add blk00003.dat
+Run 4, five *.dat files
+    2286502 uads found in 12 mins, addr.out size 206421808
+
+</pre>
+
+## p2sh, start working
+<pre>
+possible solutions
+
+https://www.mycryptopedia.com/p2sh-pay-to-script-hash-explained/
+
+https://stackoverflow.com/questions/68046300/generate-p2sh-bitcoin-address-from-wif-in-bitcoinj-java
+
+https://bitcoin.stackexchange.com/questions/107117/generate-p2sh-bitcoin-address-from-wif-in-bitcoinj-java
+
+https://medium.com/@parthshah.ce/generate-bitcoin-addresses-using-java-in-six-steps-b1c418796a9e
+
+https://academy.bit2me.com/en/que-es-p2sh/
+
+
+</pre>
