@@ -136,6 +136,17 @@ space bar, space bar, enter
 
 ### spaces
 
+## Mariadb
+<pre>
+create database silkpurse;
+
+create table wallet ( aid bigint not null auto_increment primary key, addr varchar(80) not null unique );
+
+drop table wallet;
+
+create table block ( number int not null primary key, trxCnt int, date char(20) );
+</pre>
+
 ### mariadb connetions
 [mariadb]> select @@global.max_connections
 
@@ -284,5 +295,17 @@ https://medium.com/@parthshah.ce/generate-bitcoin-addresses-using-java-in-six-st
 
 https://academy.bit2me.com/en/que-es-p2sh/
 
+
+</pre>
+
+## read .dat files, write flat file to db
+<pre>
+Nov 24, 2022
+about 15 minutes to read 10 blocks, pulled about 3.7M addresses.
+
+Nov 25, 2022
+7.5 hours, pulled out 23M addresses
+
+assume 500,000,000 addr / 23,000,000 addr = 21M x 8rs = 173 hours = 7 days
 
 </pre>

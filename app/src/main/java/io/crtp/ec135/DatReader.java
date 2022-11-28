@@ -61,7 +61,7 @@ public class DatReader {
     String PREFIX = null;
     HashSet<String> addrSet = new HashSet();
 
-    int address_id = 0;
+    int address_id = 1;
 
     public DatReader() {
         log.debug("constructor");
@@ -199,7 +199,7 @@ public class DatReader {
         } else {
             //log.debug( "addr " + btc_address );
             //log.debug( "" + address_id + "," + "\"" + btc_address + "\"" );
-            System.out.println( "" + address_id + "," + "\"" + btc_address + "\"" );
+            System.out.println( "" + address_id + "," + btc_address );
             addrSet.add( btc_address );
             address_id++;
         }
