@@ -4,6 +4,7 @@
 Lewis Carroll introduced "Down the rabbit hole" into the english lexicon  
 when he title chapter one of his 1865 novel Alice's Adventures in Wonderland,  
 "Down the rabbit hole."  
+  
 https://en.wikipedia.org/wiki/Down_the_rabbit_hole
 </pre>
 
@@ -12,16 +13,17 @@ https://en.wikipedia.org/wiki/Down_the_rabbit_hole
 Looking-Glass Land is the location for Lewis Carroll's 1871 novel  
 "Through the Looking-Glass, and What Alice Found There." The entire   
 land is divided into squares by a series ... .  
+  
 https://aliceinwonderland.fandom.com/wiki/Looking-Glass_Land  
 </pre>
 
 <pre>
-As opposed a land divied into squares, Bitcoin Looking-Glass land is    
-a series of shall we say blocks, crypto graphically linked.  
+As opposed a land divied into squares, the Bitcoin Looking-Glass land is    
+a series of, shall we say, blocks, crypto graphically linked blocks.  
   
-This project, Bitcoin Looking-Glass, works to pull out all the addresses  
-of Alice's Bitcoin blockchain land.  
-   
+This project, The Bitcoin Looking-Glass, works to pull out of the "rabbit hole"  
+all the addresses of Alice's Bitcoin blockchain.    
+  
 https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/
 </pre>
 
