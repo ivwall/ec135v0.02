@@ -1,4 +1,4 @@
-# ec135v2
+# ec135v2 - Bitcoin Looking Glass
 ## BTC Looking Glass
 
 
