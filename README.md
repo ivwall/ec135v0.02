@@ -1,8 +1,8 @@
-# ec135v2 - Bitcoin Looking Glass
+# ec135v2 - The Bitcoin Looking Glass
 
 <pre>
-Lewis Carroll introduced the phrase "Down the rabbit hole" into the  
-english lexicon when he title chapter one of his 1865 novel Alice's Adventures in Wonderland,  
+Lewis Carroll introduced "Down the rabbit hole" into the english lexicon  
+when he title chapter one of his 1865 novel Alice's Adventures in Wonderland,  
 "Down the rabbit hole."  
 https://en.wikipedia.org/wiki/Down_the_rabbit_hole
 </pre>
@@ -10,21 +10,22 @@ https://en.wikipedia.org/wiki/Down_the_rabbit_hole
 
 <pre>
 Looking-Glass Land is the location for Lewis Carroll's 1871 novel  
-Through the Looking-Glass, and What Alice Found There. The entire land is  
-divided into squares by a series ... .  
- https://aliceinwonderland.fandom.com/wiki/Looking-Glass_Land  
+"Through the Looking-Glass, and What Alice Found There." The entire   
+land is divided into squares by a series ... .  
+https://aliceinwonderland.fandom.com/wiki/Looking-Glass_Land  
 </pre>
-### Bitcoin Looking-Glass
 
 <pre>
-As opposed a land divied into squares, Bitcoin Looking-Glass land is, well,  
+As opposed a land divied into squares, Bitcoin Looking-Glass land is    
 a series of shall we say blocks, crypto graphically linked.  
   
 This project, Bitcoin Looking-Glass, works to pull out all the addresses  
-of Alice's Bitcoin blockchain land.   
+of Alice's Bitcoin blockchain land.  
+   
 https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/
 </pre>
 
+### Bitcoin Looking-Glass
 
 ## how to get to 600 / sec?
 
