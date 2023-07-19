@@ -1,24 +1,59 @@
 # ec135v2 - The Bitcoin Looking Glass
-
 <pre>
-Lewis Carroll introduced "Down the rabbit hole" into the english lexicon  
-when he title chapter one of his 1865 novel Alice's Adventures in Wonderland,  
-"<a href="https://en.wikipedia.org/wiki/Down_the_rabbit_hole">Down the rabbit hole</a>."
-</pre>
-<pre>
-<a href="https://aliceinwonderland.fandom.com/wiki/Looking-Glass_Land">Looking-Glass Land</a> is the location for Lewis Carroll's 1871 novel  
-"Through the Looking-Glass, and What Alice Found There." The entire   
-land is divided into squares by a series of ... .
-</pre>
-<pre>
-As opposed a land divied into squares, the Bitcoin Looking-Glass land is    
-a series of, shall we say, blocks, crypto graphically linked blocks.  
+"<a href="https://en.wikipedia.org/wiki/Down_the_rabbit_hole">Down the rabbit hole</a>" entered the english lexicon when Lewis Carroll  
+titled the first chapter of Alice's Adventures in Wonderland, <a href="https://en.wikipedia.org/wiki/Down_the_rabbit_hole">Down the rabbit hole</a>.  
   
-This project, The Bitcoin Looking-Glass, works to pull out of the "rabbit hole"  
-all the bitcoin addresses of <a href="https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/">Alice and Bob</a>'s Bitcoin blockchain.      
+He later wrote "Through the Looking-Glass, and What Alice Found There" and created  
+<a href="https://aliceinwonderland.fandom.com/wiki/Looking-Glass_Land">Looking-Glass Land</a>, a land divided into squares by a series of brooks.  
+
+The Bitcoin Looking-Glass land is, shall we say, a series of blocks crypto graphically linked.  
+  
+Bitcoin Looking-Glass pulls out of the "rabbit hole" all the bitcoin addresses of  
+<a href="https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/">Alice and Bob</a>'s Bitcoin blockchain.      
+</pre> 
+
+# Project Reveiw
+<pre>
+This is a second attempt
 </pre>
 
-### Bitcoin Looking-Glass
+
+# A 2nd attempt, a 2nd architecture
+### step 1
+<pre>
+read a bitcoin nodes *.dat files
+generate files to load into a maria db
+</pre>
+### step 2
+<pre>
+copy files over to mariadb
+load the files
+</pre>
+### step 3 
+## setup steps
+### gradle init - see above
+### configure build.gradle to create fatJars
+<pre>
+add artifacts -- bottom of file
+add task fatJar -- next from bottom
+gradle build
+java -jar ./app/build/libs/app-all.jar
+</pre>
+### test, run
+<pre>
+test using .dat files in ../../1014-bdfx/blocks/
+run on bnd01 and generate db load files
+    scp ./app/build/libs/app-all.jar ivwall@10.10.89.92:/home/ivwall
+    /dev/sda2       916G  479G  390G  56% /
+copy files to php64460gln321
+</pre>
+
+
+
+
+
+
+
 
 ## how to get to 600 / sec?
 
