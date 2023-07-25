@@ -9,12 +9,33 @@ He later wrote "Through the Looking-Glass, and What Alice Found There" and creat
 The Bitcoin Looking-Glass land is, shall we say, a series of blocks crypto graphically linked.  
   
 Bitcoin Looking-Glass pulls out of the "rabbit hole" all the bitcoin addresses of  
-<a href="https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/">Alice and Bob</a>'s Bitcoin blockchain.      
+<a href="https://news.bitcoin.com/meet-alice-bob-the-foundation-of-bitcoins-cryptography/">Alice and Bob</a>'s Bitcoin blockchain, well that's the vision anyway.      
 </pre> 
 
 # Project Reveiw
 <pre>
 This is a second attempt
+
+        +-----------------
+        | btc node
+        |    4 cpus/ 4 cores per socket
+        |      Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+        |    8 GB ram
+        |    1 TB disk
+        |    Ubuntu 20.04.5 LTS
+        |
+
+
+        +-----------------
+        | explorer node
+        |    4 cpus/ 4 cores per socket
+        |      Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+        |    8 GB ram
+        |    1 TB disk
+        |    Ubuntu 20.04.3 LTS
+        |
+
+
 </pre>
 
 
